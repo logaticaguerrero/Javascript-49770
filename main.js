@@ -1,35 +1,57 @@
+    alert("Hola! Te doy la bienvenida a mi cotizador de asesorías. ¡Empecemos!");
 
+    let nombreUsuario;
+    
+    do {
+        nombreUsuario = prompt("Por favor, ingresá tu nombre");
+    
+        if (nombreUsuario !== null && nombreUsuario !== "") {
+            alert("Hola! " + nombreUsuario + ", ¡Vamos a remodelar tu espacio!");
+        } else {
+            alert("No ingresaste tu nombre");
+        }
+    } while (nombreUsuario === null || nombreUsuario === "");
 
-alert ("Hola! Te doy la bienvenida a mi cotizador de asesorías. ¡Empecemos!")
+    let ambiente;
+    
+    do {
+        ambiente = prompt ("¿Cuál es el nombre del espacio que querés remodelar?");
+    
+        if (ambiente !== null && ambiente !== "") {
+            alert("Perfecto, vamos a remodelar tu " + ambiente );
+        } else {
+            alert("No ingresaste el nombre de tu espacio a remodelar");
+        }
+    } while (ambiente === null || ambiente === "");
 
-//if (nombreUsuario = " ") {
-//    alert ("No ingresaste tu nombre")
-//} else{
-//    let nombreUsuario = prompt("Por favor, ingresá tu nombre") //ACA NECESITO AGREGAR UN IF PARA QUE NO CONTINUE EL ALERT VACIO EN CASO DE QUE EL USUARIO NO ESCRIBA EL NOMBRE
-//    alert ("Hola! " + nombreUsuario + ", ¡Vamos a remodelar tu espacio!")
-//}
+function cotizar() {
+    let superficie;
+    let intento = 1
 
-let nombreUsuario = prompt("Por favor, ingresá tu nombre") //ACA NECESITO AGREGAR UN IF PARA QUE NO CONTINUE EL ALERT VACIO EN CASO DE QUE EL USUARIO NO ESCRIBA EL NOMBRE
-    alert ("Hola! " + nombreUsuario + ", ¡Vamos a remodelar tu espacio!")
+    do {
+        superficie = parseFloat(prompt("Ingresá los m2 de tu " + ambiente));
 
+        if (superficie >= 5 && superficie < 25 && intento <= 3) {
+            let valorMetro = 60;
+            const valorAsesoria = superficie * valorMetro;
+            alert("Ingresaste " + superficie + " m². La asesoría de tu " + ambiente + " tiene un costo de USD " + valorAsesoria);
+            break;
+        } else if (superficie < 5  && intento <= 3) {
+            let valorMetro = 60;
+            const minimoAsesoria = 5 * valorMetro;
+            alert("Ingresaste " + superficie + " m². Recordá que el mínimo de superficie para una asesoría es de 5m². La asesoría de tu " + ambiente + " tiene un costo de " + minimoAsesoria + " USD");
+        } else if (superficie > 25  && intento <= 3) {
+            alert("Ingresaste " + superficie + " m². Tu " + ambiente + " es muy grande y, para una mejor experiencia, el valor de tu asesoría requiere que la evaluemos personalmente");
+        } else {
+            alert("No ingresaste ningún valor o el valor es erróneo. Por favor, ingresa un valor válido.")
+            intento++
+            if (intento >3){
+                alert ("Parece que necesitás más tiempo para medir tu ambiente. Volvé más tarde")
+                console.error("El usuario no ingresó datos válidos para hacer una cotización")
+                break
+            }
+        }
+    } while (superficie === null || isNaN(superficie)); 
+}
 
-let ambiente = prompt ("¿Cuál es el nombre del espacio que querés remodelar?")
-
-
-alert ("Perfecto, vamos a remodelar tu " + ambiente )
-
-//let valorMetro = 120
-//const valorAsesoria = superficie * valorMetro
-
-do{
-    let superficie = parseFloat (prompt ("Ingresá los mt2 de tu " + ambiente ))
-} while (parseInt(superficie)) //ACA se detiene el algoritmo cuando el usuario NO ingresa un número
-let superficie = 0;
-
-
-let valorMetro = 120
-const valorAsesoria = superficie * valorMetro
-
-
-alert ("La asesoría de tu " + ambiente + "tiene un costo de USD " + valorAsesoria )
-
+cotizar();
