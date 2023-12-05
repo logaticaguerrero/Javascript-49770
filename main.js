@@ -86,6 +86,8 @@ do {
     }
 } while (ambiente === null || ambiente === "");
 
+const valorMetro = 60
+
 // Objeto para representar el carrito
 let carrito = {
     productos: [],
@@ -110,7 +112,6 @@ function cotizar(nombreAmbiente) {
         if (!isNaN(superficie) && superficie >= 0) {
             // El valor es válido
             if (superficie >= 5 && superficie < 25 && intento <= 3) {
-                let valorMetro = 60;
                 const valorAsesoria = superficie * valorMetro;
                 const confirmAgregarAlCarrito = confirm("La asesoría de tu " + nombreAmbiente + " tiene un costo de USD " + valorAsesoria + ". ¿Deseas agregarla al carrito?");
                 
@@ -131,7 +132,6 @@ function cotizar(nombreAmbiente) {
 
                 break;
             } else if (superficie < 5 && intento <= 3) {
-                let valorMetro = 60;
                 const minimoAsesoria = 5 * valorMetro;
                 const confirmAgregarAlCarrito = confirm("Recordá que el mínimo de superficie para una asesoría es de 5m². La asesoría de tu " + nombreAmbiente + " tiene un costo de " + minimoAsesoria + " USD. ¿Deseas agregarla al carrito?");
                 
